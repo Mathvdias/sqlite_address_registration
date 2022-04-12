@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CityFieldComponent extends StatelessWidget {
-  const CityFieldComponent({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const CityFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,7 @@ class CityFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         inputFormatters: [
           LengthLimitingTextInputFormatter(20),
@@ -27,6 +32,7 @@ class CityFieldComponent extends StatelessWidget {
           if (value.trim().isEmpty) {
             return 'Cidade inválida';
           }
+          return null;
         },
         decoration: const InputDecoration(
           labelText: 'Cidade',

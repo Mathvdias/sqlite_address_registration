@@ -16,8 +16,8 @@ class HomePageView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: (() {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const MyHomePage()));
           }),
         ));
   }

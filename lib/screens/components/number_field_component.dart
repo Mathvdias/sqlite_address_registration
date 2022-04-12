@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NumberFieldComponent extends StatelessWidget {
-  const NumberFieldComponent({Key? key}) : super(key: key);
+    final TextEditingController controller;
+  const NumberFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,7 @@ class NumberFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.number,
         validator: (value) {

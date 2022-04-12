@@ -1,9 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AddressFieldComponent extends StatelessWidget {
-  const AddressFieldComponent({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const AddressFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,7 @@ class AddressFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.streetAddress,
         inputFormatters: [
@@ -29,6 +33,7 @@ class AddressFieldComponent extends StatelessWidget {
           if (value.trim().isEmpty) {
             return 'Rua inválida';
           }
+          return null;
         },
         decoration: const InputDecoration(
           labelText: 'Rua, avenida...',

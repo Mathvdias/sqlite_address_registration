@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sqllite_sample/database/app_database.dart';
 
 import 'screens/home_page_view.dart';
-import 'screens/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());
+  findAll().then((userAddressList) {
+    debugPrint(userAddressList.toString());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -22,4 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class StateFieldComponent extends StatelessWidget {
-  const StateFieldComponent({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const StateFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,7 @@ class StateFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         inputFormatters: [
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
           LengthLimitingTextInputFormatter(2)

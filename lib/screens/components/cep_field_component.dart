@@ -1,9 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CepFieldComponent extends StatelessWidget {
-  const CepFieldComponent({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const CepFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +18,11 @@ class CepFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.number,
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
-
         ],
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -29,6 +32,7 @@ class CepFieldComponent extends StatelessWidget {
           if (value.length < 10) {
             return 'CEP inválido';
           }
+          return null;
         },
         decoration: const InputDecoration(labelText: 'CEP'),
       ),

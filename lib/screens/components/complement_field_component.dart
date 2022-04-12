@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ComplementFieldComponent extends StatelessWidget {
-  const ComplementFieldComponent({Key? key}) : super(key: key);
+    final TextEditingController controller;
+  const ComplementFieldComponent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,7 @@ class ComplementFieldComponent extends StatelessWidget {
     return Theme(
       data: _dataTheme,
       child: TextFormField(
+        controller: controller,
         inputFormatters: [
           LengthLimitingTextInputFormatter(20),
           FilteringTextInputFormatter.allow(RegExp("[A-Za-z ]")),
