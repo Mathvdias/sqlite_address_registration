@@ -9,17 +9,22 @@ Future<Database> createDatabase() {
       dbPath,
       'dataAddress.db',
     );
-    return openDatabase(path, onCreate: (db, version) {
-      db.execute('CREATE TABLE address('
-          'id INTEGER PRIMARY KEY, '
-          'cep TEXT, '
-          'rua TEXT, '
-          'numero TEXT, '
-          'bairro TEXT, '
-          'complemento TEXT, '
-          'cidade TEXT, '
-          'estado TEXT)');
-    }, version: 1);
+    return openDatabase(
+      path,
+      onCreate: (db, version) {
+        db.execute('CREATE TABLE address('
+            'id INTEGER PRIMARY KEY, '
+            'cep TEXT, '
+            'rua TEXT, '
+            'numero TEXT, '
+            'bairro TEXT, '
+            'complemento TEXT, '
+            'cidade TEXT, '
+            'estado TEXT)');
+      },
+      version: 1,
+     // onDowngrade: onDatabaseDowngradeDelete,
+    );
   });
 }
 
