@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:sqllite_sample/database/app_database.dart';
+import 'package:sqllite_sample/database/dao/address_dao.dart';
 import 'package:sqllite_sample/model/user_adress.dart';
 import 'package:sqllite_sample/screens/create_address_screen.dart';
 
 class AddressScreen extends StatelessWidget {
-  const AddressScreen({Key? key}) : super(key: key);
-
+  AddressScreen({Key? key}) : super(key: key);
+  final AddressDao _dao = AddressDao();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +15,7 @@ class AddressScreen extends StatelessWidget {
         body: Center(
           child: FutureBuilder<List<UserAddressModel>>(
             initialData: const [],
-            future: findAll(),
+            future: _dao.findAll(),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:

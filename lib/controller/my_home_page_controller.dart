@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sqllite_sample/database/app_database.dart';
 import 'package:sqllite_sample/model/user_adress.dart';
+
+import '../database/dao/address_dao.dart';
 
 class MyHomePageController extends ChangeNotifier {
   final TextEditingController cepController = TextEditingController();
@@ -10,7 +11,7 @@ class MyHomePageController extends ChangeNotifier {
   final TextEditingController complementoController = TextEditingController();
   final TextEditingController cidadeController = TextEditingController();
   final TextEditingController ufController = TextEditingController();
-
+  final AddressDao _dao = AddressDao();
   void sendData(context) {
     final String cep = cepController.text;
     final String rua = ruaController.text;
@@ -22,12 +23,12 @@ class MyHomePageController extends ChangeNotifier {
 
     final UserAddressModel newData = UserAddressModel(
         0, cep, rua, numero, bairro, complemento, cidade, estado);
-    save(newData).then((id) => Navigator.pop(context));
+    _dao.save(newData).then((id) => Navigator.pop(context));
     debugPrint(newData.toString());
   }
 
   void findAdress() {
-    findAll();
+    _dao.findAll();
     notifyListeners();
   }
 }

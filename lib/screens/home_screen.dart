@@ -19,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ElevatedButton(
           child: const Text("Visualizar endereço"),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddressScreen()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => AddressScreen()));
           },
         ),
       ),
