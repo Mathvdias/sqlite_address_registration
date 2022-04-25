@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:sqllite_sample/database/app_database.dart';
 import 'package:sqllite_sample/model/user_adress.dart';
-import 'package:sqllite_sample/screens/my_home_page.dart';
+import 'package:sqllite_sample/screens/create_address_screen.dart';
 
-class HomePageView extends StatelessWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class AddressScreen extends StatelessWidget {
+  const AddressScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class HomePageView extends StatelessWidget {
                       itemCount: users!.length,
                       itemBuilder: (context, index) {
                         final UserAddressModel user = users[index];
-                        return Text(user.bairro.toString());
+                        return _AddressItem(key, user);
                       });
               }
               return const Text('Error');
@@ -50,9 +51,38 @@ class HomePageView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: (() {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CreateAddressScreen()));
           }),
         ));
+  }
+}
+
+class _AddressItem extends StatelessWidget {
+  final UserAddressModel user;
+
+  const _AddressItem(
+    Key? key,
+    this.user,
+  ) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text(
+          user.rua,
+          style: const TextStyle(
+            fontSize: 24.0,
+          ),
+        ),
+        subtitle: Text(
+          user.numero,
+          style: const TextStyle(
+            fontSize: 16.0,
+          ),
+        ),
+      ),
+    );
   }
 }

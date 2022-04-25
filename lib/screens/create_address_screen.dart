@@ -10,12 +10,16 @@ import 'components/neighborhood_field_component.dart';
 import 'components/number_field_component.dart';
 import 'components/state_field_component.dart';
 
-final formKey = GlobalKey<FormState>();
-final controller = MyHomePageController();
+class CreateAddressScreen extends StatefulWidget {
+  const CreateAddressScreen({Key? key}) : super(key: key);
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  @override
+  State<CreateAddressScreen> createState() => _CreateAddressScreenState();
+}
 
+class _CreateAddressScreenState extends State<CreateAddressScreen> {
+  final formKey = GlobalKey<FormState>();
+  final controller = MyHomePageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
