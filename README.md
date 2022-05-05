@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 # sqlite_address_registration
-=======
+
 # sqllite_sample
 
 A new Flutter project.
